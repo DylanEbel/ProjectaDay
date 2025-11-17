@@ -1,0 +1,98 @@
+:root {
+  --cell-size: 40px;
+  background-color: #fff0eb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#board {
+    display: grid;
+    margin: 40px auto 0 auto;
+    grid-template-columns: repeat(9, var(--cell-size));
+    border: 2px solid black;
+    grid-template-rows: repeat(9, var(--cell-size));
+
+    width: calc(9 * var(--cell-size));
+    height: calc(9 * var(--cell-size));   
+}
+
+header {
+  text-align: center;
+
+}
+
+header h1 {
+  font-size: 35px;
+  margin-bottom: -12px;
+}
+
+#author {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+
+#author a {
+  color: black;
+  font-weight: bold;
+}
+
+.tile {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid grey;
+  box-sizing: border-box;
+  background-color: white;
+
+  display: flex;
+  text-align: center;
+  font-size: larger;
+
+   caret-color: transparent;
+   user-select: none;
+
+   cursor: pointer;
+}
+
+.tile:focus {
+    background-color: lightcoral;
+    outline:none;
+}
+
+.tile::selection {
+  background: transparent;
+  color: inherit;
+
+}
+
+.x-end {
+    border-right: 1px black solid;
+}
+
+.y-end {
+    border-bottom: 1px black solid;
+}
+
+#forms {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+#forms button {
+  border: none;
+  background-color: maroon;
+  color: whitesmoke;
+  font-size: larger;
+  padding: 12px 18px;
+  transition: all ease-in 0.1s;
+}
+
+#forms button:hover {
+  box-shadow: black 2px 2px 2px;
+
+}
