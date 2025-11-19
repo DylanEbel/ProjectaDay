@@ -33,8 +33,6 @@ class Tile:
         if  self.walls[RIGHT] and (not remove or remove != RIGHT):
             pygame.draw.line(screen, color, (x1, y0), (x1, y1), thickness)
 
-  
-
     def RemoveWall(self, dx: int, dy: int):
         if dx == 1:
             self.walls[RIGHT] = False
@@ -45,11 +43,27 @@ class Tile:
         elif dy == -1:
             self.walls[TOP] = False
 
+    def GetOpenWalls(self):
+        return self.walls
+
+    def CanVisit(self, adjacentTile: "Tile", dir):
+        isOurWallOpen = self.walls[dir]
+        oppositeDirection = self.GetOppositeDirection(dir)
+        isTheirWallOpen = adjacentTile.walls[oppositeDirection]
+        return not isOurWallOpen and not isTheirWallOpen
+
 
     def Reset(self):
         self.walls = [True, True, True, True]
         self.visited = False
         self.isActive = False
+
+    def GetOppositeDirection(self, dir: int):
+        if (dir == 1): return 0
+        if (dir == 0): return 1
+        if (dir == 3): return 2
+        if (dir == 2): return 3
+
 
     def Visit(self):
         self.visited = True

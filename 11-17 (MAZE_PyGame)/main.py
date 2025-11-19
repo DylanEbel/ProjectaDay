@@ -2,6 +2,7 @@ import pygame
 import sys
 from mazeLogic.maze import Maze
 from mazeLogic.mazeGen import MazeGen
+from mazeLogic.mazeSolve import MazeSolve
 
 pygame.init()
 
@@ -27,14 +28,20 @@ running = True
 CELL_SIZE = 12
 THICKNESS = 2
 
-maze = Maze(30, 30)
+X = 20
+Y = 20
+
+maze = Maze(X, Y)
 maze.SetBoard()
 
 START_X = 0
 START_Y = 0
 
 mazeGen = MazeGen(maze, START_X, START_Y)
+mazeSolve = MazeSolve(maze, START_X, START_Y, X - 1, Y - 1)
 
+generating = False
+generated = False
 solving = False
 solved = False
 
@@ -69,8 +76,8 @@ while running:
     screen.blit(solve_surf, solve_text)
 
     if is_hovered_clear and mouse_pressed[0]:
-        solving = False
-        solved = False
+        generating = False
+        generated = False
         mazeGen.Stop()
         maze.Reset_Board()
 
@@ -78,27 +85,34 @@ while running:
         mazeGen.Stop()
         maze.Reset_Board()
         mazeGen.Forward()
-        solved = False
-        solving = True
+        generated = False
+        generating = True
 
     if is_hovered_solve and mouse_pressed[0]:
-        if solved:
+        if generated and not generating:
+            mazeSolve.SetStart()
+            mazeSolve.Forward()
+            solving = True
+            solved = True
             
-
-    if solving == True:
-        output = mazeGen.Forward()
+    if solving: 
+        output = mazeSolve.Forward()
         solving = not output
-        if not solving: 
+        if not solving:
             solved = True
 
-
+    if generating:
+        output = mazeGen.Forward()
+        generating = not output
+        if not generating: 
+            generated = True
 
 
     maze.RenderBoard(screen, WHITE, CELL_SIZE, WIDTH, HEIGHT, THICKNESS)
 
     pygame.display.flip()
 
-    clock.tick(1000)
+    clock.tick(60)
 
 pygame.quit()
 sys.exit()

@@ -25,7 +25,7 @@ class Maze:
         tile = Tile(x, y)
         return tile
     
-    def GetAdjacentTiles(self, tile: Tile, stack: list):
+    def GetAdjacentTiles(self, tile: Tile, stack: list = None):
         x, y = tile.x, tile.y
         adjacent_tiles = []
 
@@ -36,6 +36,21 @@ class Maze:
             if 0 <= newX < self.width and 0 <= newY < self.height and (newX, newY) not in stack:
                 adjacent_tile: Tile = self.board[newX][newY]
                 if not adjacent_tile.visited: adjacent_tiles.append(adjacent_tile)
+
+        return adjacent_tiles
+    
+    def GetAdjacentOpenTiles(self, tile: Tile):
+        x, y = tile.x, tile.y
+        adjacent_tiles = []
+
+        for dx, dy, dir in self.directions:
+            newX = x + dx
+            newY = y + dy
+
+            if 0 <= newX < self.width and 0 <= newY < self.height: 
+                adjacent_tile: Tile = self.board[newX][newY]
+
+                if tile.CanVisit(adjacent_tile, dir): adjacent_tiles.append(adjacent_tile)
 
         return adjacent_tiles
 
