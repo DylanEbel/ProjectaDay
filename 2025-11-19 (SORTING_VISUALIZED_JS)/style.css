@@ -1,0 +1,84 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  margin: 0 auto 0 auto;
+  display: block;
+  position: middle;
+}
+
+:root {
+  --cell-size: 40px;
+  background-color: #fff0eb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  text-align: center;
+}
+
+header h1 {
+  font-size: 35px;
+  margin-bottom: -12px;
+}
+
+#author {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+#author a {
+  color: black;
+  font-weight: bold;
+}
+
+#forms {
+  margin-bottom: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+#forms input {
+  width: 80px;
+  border: none;
+  font-size: medium
+}
+
+#forms div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px
+}
+
+#forms label {
+  font-size: small
+}
+
+#buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+#buttons button {
+  border: none;
+  background-color: maroon;
+  color: whitesmoke;
+  font-size: larger;
+  padding: 12px 18px;
+  transition: all ease-in 0.1s;
+}
+
+#buttons button:hover {
+  box-shadow: black 2px 2px 2px;
+}
